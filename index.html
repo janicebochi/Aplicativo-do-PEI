@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEI Fácil - Plano Educacional Individualizado</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topo">
+    <div>
+        <h1>PEI FÁCIL</h1>
+        <p>Plano Educacional Individualizado</p>
+    </div>
+
+    <div class="acoes">
+        <button onclick="salvarPEI()" class="btn salvar">
+            💾 Salvar
+        </button>
+
+        <button onclick="imprimirPEI()" class="btn imprimir">
+            🖨️ Imprimir / PDF
+        </button>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="cabecalho-form">
+        <h2>Preenchimento do PEI</h2>
+        <p>
+            Preencha as informações do estudante. Os dados ficam salvos
+            neste navegador.
+        </p>
+    </div>
+
+
+    <!-- 1 IDENTIFICAÇÃO -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>1</span>
+            <h2>IDENTIFICAÇÃO</h2>
+        </div>
+
+        <div class="grid">
+
+            <div class="campo campo-grande">
+                <label>ESTUDANTE</label>
+                <input type="text" id="estudante">
+            </div>
+
+            <div class="campo">
+                <label>CGM</label>
+                <input type="text" id="cgm">
+            </div>
+
+            <div class="campo">
+                <label>DATA DE NASCIMENTO</label>
+                <input type="date" id="nascimento" onchange="calcularIdade()">
+            </div>
+
+            <div class="campo">
+                <label>IDADE</label>
+                <input type="number" id="idade" readonly>
+            </div>
+
+            <div class="campo">
+                <label>MATRÍCULA EM SRM</label>
+                <input type="text" id="srm">
+            </div>
+
+            <div class="campo campo-grande">
+                <label>ESTABELECIMENTO</label>
+                <input type="text" id="estabelecimento">
+            </div>
+
+            <div class="campo">
+                <label>DIRETOR(A)</label>
+                <input type="text" id="diretor">
+            </div>
+
+            <div class="campo">
+                <label>PEDAGOGO(A)</label>
+                <input type="text" id="pedagogo">
+            </div>
+
+            <div class="campo campo-grande">
+                <label>E-MAIL</label>
+                <input type="email" id="email">
+            </div>
+
+            <div class="campo">
+                <label>ANO/SÉRIE</label>
+                <input type="text" id="serie">
+            </div>
+
+            <div class="campo">
+                <label>TURNO</label>
+
+                <select id="turno">
+                    <option value="">Selecione</option>
+                    <option>Matutino</option>
+                    <option>Vespertino</option>
+                    <option>Noturno</option>
+                    <option>Integral</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label>TURMA</label>
+                <input type="text" id="turma">
+            </div>
+
+            <div class="campo campo-grande">
+                <label>PROFESSOR(A)</label>
+                <input type="text" id="professor">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 2 DIAGNÓSTICO -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>2</span>
+            <h2>DIAGNÓSTICO</h2>
+        </div>
+
+        <div class="campo">
+            <label>DIAGNÓSTICO (LAUDO)</label>
+            <textarea id="diagnostico"></textarea>
+        </div>
+
+        <div class="grid">
+
+            <div class="campo">
+                <label>FAZ USO DE MEDICAÇÕES?</label>
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="medicacao" value="Sim">
+                        SIM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="medicacao" value="Não">
+                        NÃO
+                    </label>
+                </div>
+
+                <input
+                    type="text"
+                    id="qualMedicacao"
+                    placeholder="Se sim, qual?"
+                >
+            </div>
+
+
+            <div class="campo">
+                <label>FAZ ACOMPANHAMENTO MÉDICO?</label>
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="medico" value="Sim">
+                        SIM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="medico" value="Não">
+                        NÃO
+                    </label>
+                </div>
+
+                <input
+                    type="text"
+                    id="qualMedico"
+                    placeholder="Se sim, qual?"
+                >
+            </div>
+
+
+            <div class="campo">
+                <label>FAZ ACOMPANHAMENTO PSICOLÓGICO?</label>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input type="radio" name="psicologico" value="Sim">
+                        SIM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="psicologico" value="Não">
+                        NÃO
+                    </label>
+
+                </div>
+            </div>
+
+
+            <div class="campo">
+                <label>FAZ ACOMPANHAMENTO FONOLÓGICO?</label>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input type="radio" name="fono" value="Sim">
+                        SIM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="fono" value="Não">
+                        NÃO
+                    </label>
+
+                </div>
+            </div>
+
+
+            <div class="campo">
+                <label>FAZ ACOMPANHAMENTO TERAPÊUTICO?</label>
+
+                <div class="radio-group">
+
+                    <label>
+                        <input type="radio" name="terapeutico" value="Sim">
+                        SIM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="terapeutico" value="Não">
+                        NÃO
+                    </label>
+
+                </div>
+
+                <input
+                    type="text"
+                    id="qualTerapeutico"
+                    placeholder="Se sim, qual?"
+                >
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 3 HABILIDADES -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>3</span>
+            <h2>HABILIDADES</h2>
+        </div>
+
+        <div class="orientacao">
+            <strong>Orientação:</strong>
+            Descreva o que o estudante CONSEGUE FAZER.
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🧠 COGNITIVAS</h3>
+
+            <p class="ajuda">
+                Nível de leitura e escrita, reconhecimento de letras,
+                números, atenção, memória, raciocínio lógico e compreensão
+                de comandos.
+            </p>
+
+            <textarea
+                id="habilidadesCognitivas"
+                placeholder="Descreva as habilidades cognitivas do estudante..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🏃 PSICOMOTORAS</h3>
+
+            <p class="ajuda">
+                Coordenação motora fina e ampla, organização espacial,
+                postura e controle corporal.
+            </p>
+
+            <textarea
+                id="habilidadesPsicomotoras"
+                placeholder="Descreva as habilidades psicomotoras..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🤝 INTERPESSOAIS</h3>
+
+            <p class="ajuda">
+                Interação com colegas, participação, respeito às regras
+                e controle emocional.
+            </p>
+
+            <textarea
+                id="habilidadesInterpessoais"
+                placeholder="Descreva as habilidades interpessoais..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>💬 COMUNICACIONAIS</h3>
+
+            <p class="ajuda">
+                Comunicação verbal e não verbal, compreensão oral e
+                capacidade de expressar necessidades.
+            </p>
+
+            <textarea
+                id="habilidadesComunicacionais"
+                placeholder="Descreva as habilidades comunicacionais..."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- 4 DIFICULDADES -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>4</span>
+            <h2>DIFICULDADES</h2>
+        </div>
+
+        <div class="orientacao">
+            <strong>Orientação:</strong>
+            Descreva as barreiras observadas no processo de aprendizagem.
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🧠 COGNITIVAS</h3>
+
+            <div class="check-list">
+
+                <label>
+                    <input type="checkbox" name="difCognitiva"
+                    value="Dificuldade de concentração">
+                    Dificuldade de concentração
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difCognitiva"
+                    value="Troca de letras">
+                    Troca de letras
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difCognitiva"
+                    value="Não consolida conteúdos">
+                    Não consolida conteúdos
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difCognitiva"
+                    value="Dificuldade em interpretar comandos longos">
+                    Dificuldade em interpretar comandos longos
+                </label>
+
+            </div>
+
+            <textarea
+                id="dificuldadesCognitivas"
+                placeholder="Observações adicionais..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🏃 PSICOMOTORAS</h3>
+
+            <div class="check-list">
+
+                <label>
+                    <input type="checkbox" name="difPsicomotora"
+                    value="Letra ilegível">
+                    Letra ilegível
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difPsicomotora"
+                    value="Cansaço ao escrever">
+                    Cansaço ao escrever
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difPsicomotora"
+                    value="Dificuldade em recortar">
+                    Dificuldade em recortar
+                </label>
+
+            </div>
+
+            <textarea
+                id="dificuldadesPsicomotoras"
+                placeholder="Observações adicionais..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🤝 INTERPESSOAIS</h3>
+
+            <div class="check-list">
+
+                <label>
+                    <input type="checkbox" name="difInterpessoal"
+                    value="Isolamento">
+                    Isolamento
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difInterpessoal"
+                    value="Conflitos frequentes">
+                    Conflitos frequentes
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difInterpessoal"
+                    value="Impulsividade">
+                    Impulsividade
+                </label>
+
+            </div>
+
+            <textarea
+                id="dificuldadesInterpessoais"
+                placeholder="Observações adicionais..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>💬 COMUNICACIONAIS</h3>
+
+            <div class="check-list">
+
+                <label>
+                    <input type="checkbox" name="difComunicacional"
+                    value="Vocabulário restrito">
+                    Vocabulário restrito
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difComunicacional"
+                    value="Dificuldade de relatar fatos">
+                    Dificuldade de relatar fatos
+                </label>
+
+                <label>
+                    <input type="checkbox" name="difComunicacional"
+                    value="Não compreende instruções complexas">
+                    Não compreende instruções complexas
+                </label>
+
+            </div>
+
+            <textarea
+                id="dificuldadesComunicacionais"
+                placeholder="Observações adicionais..."
+            ></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- 5 OBJETIVOS -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>5</span>
+            <h2>OBJETIVOS / METAS DE APRENDIZAGEM</h2>
+        </div>
+
+        <div class="orientacao">
+
+            <strong>Orientação:</strong>
+
+            Registre objetivos possíveis, mensuráveis e adequados
+            ao nível real do estudante.
+
+        </div>
+
+        <textarea
+            id="objetivos"
+            class="area-grande"
+            placeholder="Exemplo:
+• Avançar na leitura e escrita.
+• Resolver adições simples com apoio concreto.
+• Participar de atividades coletivas respeitando regras."
+        ></textarea>
+
+    </section>
+
+
+    <!-- 6 ADEQUAÇÕES -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>6</span>
+            <h2>ADEQUAÇÕES / ADAPTAÇÕES</h2>
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>📚 Adequações / Adaptações Didático-Metodológicas</h3>
+
+            <p class="ajuda">
+                Material concreto, atividades lúdicas, apoio visual,
+                instruções curtas e objetivas.
+            </p>
+
+            <textarea id="adequacoesDidatico"></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🏫 Organizativas</h3>
+
+            <p class="ajuda">
+                Lugar na sala, organização da rotina e antecipação
+                de atividades.
+            </p>
+
+            <textarea id="organizativas"></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🎯 Estratégias diferenciadas</h3>
+
+            <p class="ajuda">
+                Jogos pedagógicos, recursos visuais e uso de tecnologia.
+            </p>
+
+            <textarea id="estrategias"></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>👩‍🏫 Mediação individual</h3>
+
+            <p class="ajuda">
+                Frequência do apoio e tipo de intervenção.
+            </p>
+
+            <textarea id="mediacao"></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🧩 Fragmentação de tarefas</h3>
+
+            <textarea id="fragmentacao"></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>📅 Rotinas estruturadas</h3>
+
+            <textarea id="rotinas"></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>📖 Adequações / Adaptações Curriculares</h3>
+
+            <textarea
+                id="adequacoesCurriculares"
+                placeholder="Conteúdos, atividades, avaliações e temporalidade..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="subsecao">
+
+            <h3>🧰 Recursos e suporte</h3>
+
+            <p class="ajuda">
+                SRM, material adaptado, professor auxiliar, família,
+                recursos visuais, tecnológicos ou pedagógicos.
+            </p>
+
+            <textarea id="recursos"></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- 7 ACOMPANHAMENTO -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>7</span>
+            <h2>ACOMPANHAMENTO DAS AÇÕES</h2>
+        </div>
+
+        <div class="orientacao">
+            Registre encaminhamentos, reuniões com a família,
+            relatórios e trocas com profissionais.
+        </div>
+
+        <textarea
+            id="acompanhamento"
+            class="area-grande"
+        ></textarea>
+
+    </section>
+
+
+    <!-- 8 RESULTADOS -->
+    <section class="card">
+
+        <div class="titulo-secao">
+            <span>8</span>
+            <h2>RESULTADOS E ENCAMINHAMENTOS</h2>
+        </div>
+
+        <div class="orientacao">
+            Registre avanços, metas atingidas, metas não alcançadas,
+            continuidade, ajustes e novos encaminhamentos.
+        </div>
+
+        <textarea
+            id="resultados"
+            class="area-grande"
+        ></textarea>
+
+    </section>
+
+
+    <div class="rodape-acoes">
+
+        <button onclick="salvarPEI()" class="btn salvar">
+            💾 SALVAR PEI
+        </button>
+
+        <button onclick="imprimirPEI()" class="btn imprimir">
+            🖨️ IMPRIMIR / SALVAR PDF
+        </button>
+
+        <button onclick="limparFormulario()" class="btn limpar">
+            🗑️ LIMPAR
+        </button>
+
+    </div>
+
+</main>
+
+
+<footer>
+    PEI Fácil — Ferramenta de apoio ao planejamento educacional.
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
